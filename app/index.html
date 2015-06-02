@@ -5,6 +5,7 @@
     <title></title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <base href="/">
 </head>
 
 <body ng-controller="layoutController">
@@ -17,7 +18,7 @@
                 <ul class="user-menu">
                     <li class="dropdown pull-right"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user">&nbsp; <span class="caret"></span></span></a>
                         <ul role="menu" class="dropdown-menu">
-                            <li><a href="/logout"><span class="glyphicon glyphicon-log-out">Logout</span></a>
+                            <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out">Logout</span></a>
                             </li>
                         </ul>
                     </li>
@@ -28,15 +29,15 @@
 
     <div id="sidebar-collapse" class="sidebar">
         <ul class="nav menu">
-            <li><a href="#/">home<span class="glyphicon glyphicon-home pull-right"></span></a>
+            <li><a href="/">home<span class="glyphicon glyphicon-home pull-right"></span></a>
             </li>
-            <li><a href="#/chat">chat<span class="glyphicon glyphicon-comment pull-right"></span></a>
+            <li><a href="/chat">chat<span class="glyphicon glyphicon-comment pull-right"></span></a>
             </li>
-            <li><a href="#/employees">employees<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/employees">employees<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
-            <li><a href="#/customers">customers<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/customers">customers<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
-            <li><a href="#/categories">categories<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/categories">categories<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
         </ul>
     </div>
@@ -45,15 +46,17 @@
 
     <!-- CDN jQuery, Angular, Sockets-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
     <!-- Angular main app-->
     <script src="/js/app.js"></script>
     <!-- Angular services-->
     <script src="/js/services/apiurlService.js"></script>
     <!-- Angular factories-->
+    <script src="./js/factories/loginFactory.js"></script>
     <script src="/js/factories/motdFactory.js"></script>
     <script src="/js/factories/chatFactory.js"></script>
     <script src="/js/factories/employeeFactory.js"></script>
@@ -64,7 +67,8 @@
     <script src="/js/directives/scrollBottomDirective.js"></script>
     <!-- Angular controllers-->
     <script src="/js/controllers/motdController.js"></script>
-    <script src="/js/controllers/layoutController.js"></script>
+    <script src="/js/controllers/layoutController.js"></script>    <
+    <script src="./js/controllers/authorizationController.js"></script>
     <script src="/js/controllers/chatController.js"></script>
     <script src="/js/controllers/employeeController.js"></script>
     <script src="/js/controllers/customerController.js"></script>

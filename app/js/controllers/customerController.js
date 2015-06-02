@@ -3,6 +3,7 @@ angular.module('controllers.customerController', [])
     .controller('customerController', function($scope, $http, apiurl){
         var customerCrud = "";
 
+        console.log("ok");
         $http.get(apiurl.get() + "customers/").success(function(response) { $scope.customers = response.data });
         $http.get(apiurl.get() + "customers/"+customerCrud).success(function(response) { $scope.customer = response.data });
 
