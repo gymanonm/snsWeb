@@ -1,5 +1,6 @@
 (function () {
     angular.module('snsChat', ['ngResource',
+                               'ui.router',
                                'services.apiurlService',
                                'factories.motdFactory',
                                'factories.chatFactory',
@@ -16,7 +17,34 @@
                                'controllers.motdController'])
 
 
-    .config(['$httpProvider', function($httpProvider) {
+    .config(function($httpProvider,$stateProvider, $urlRouterProvider) {
+
+        $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: 'partials/home.html',
+            controller: 'motdController'
+        })
+        .state('chat', {
+            url: '/chat',
+            templateUrl: 'partials/chat.html',
+            controller: 'chatController'
+        })
+        .state('customers', {
+            url: '/customers',
+            templateUrl: 'partials/customers.html',
+            controller: 'motdController'
+        })
+        .state('employees', {
+            url: '/employees',
+            templateUrl: 'partials/customers.html',
+            controller: 'customerController'
+        })
+        .state('categories', {
+            url: '/categories',
+            templateUrl: 'partials/categories.html',
+            controller: 'categoryController'
+        })
 
             var Base64 ={
             _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
@@ -76,7 +104,7 @@
             $httpProvider.defaults.useXDomain = true;
             //$httpProvider.defaults.withCredentials = true;
 
-     }])
+     })
 })();
 
 //function getCookie(cname) {

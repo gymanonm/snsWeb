@@ -1,0 +1,62 @@
+<h1>SNS chat web client</h1>
+  <div ng-controller="chatController as chtctrl" ng-init="chtctrl.initialize('undefined')" class="row">
+    <!-- start chat-list panel-->
+    <div class="col-md-4">
+      <div class="panel panel-default chatlist">
+        <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Chats
+          <button class="pull-right btn btn-md btn-send allchatbtn"><span class="glyphicon glyphicon-plus allchatplusbtn"></span></button>
+        </div>
+        <div droppable="droppable" drop="handleDrop" class="panel-body chat">
+          <ul>
+            <li ng-repeat="chat in chats.chats" data="{{chat._id}}" ng-click="click(chat._id)" class="chat-list-item clearfix deletehide"><span class="chat-img pull-left"><img src="http://placehold.it/50/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
+              <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong></div>
+              <button ng-click="leaveChat(chat._id)" class="btn btn-danger pull-right">Leave</button><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end chat-list panel-->
+    <div class="col-md-4 hide allchatpanel">
+      <div class="panel panel-default chatlist">
+        <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>All Chats</div>
+        <div class="panel-body chat">
+          <ul>
+            <li ng-repeat="chat in allchats" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" class="chat-list-item clearfix draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
+              <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong><br/><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- chat panel-->
+    <div class="col-md-8 chatpanel">
+      <div class="panel panel-default chat">
+        <div id="accordion" class="panel-heading"><span class="glyphicon glyphicon-comment"></span>Chat {{chat.employees[0].username}} - {{chat.customer.name}}</div>
+        <div schroll-bottom="chat.messages" class="panel-body">
+          <ul>
+            <!-- chat message-->
+            <li ng-repeat="messages in chat.messages" ng-class="empclass(messages.employee)" class="clearfix"><span ng-class="pullempclass(messages.isEmployee)" class="chat-img"><img src="http://placehold.it/80/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
+              <div class="chat-body clearfix">
+                <div class="header"><strong ng-class="pullempclass(messages.isEmployee)" class="primary-font">{{messages.user.name}} {{messages.employee.name}}</strong>
+                  <!-- | {{messages.userId}}-->
+                  <!--  | {{getuser(messages.userId, messages.employee)}}--><small class="text-muted">{{messages.timeStamp | date:'medium'}}</small>
+                </div>
+                <p ng-class="pullempclass(messages.isEmployee)">{{messages.text}}</p>
+              </div>
+            </li>
+            <!-- end chat message-->
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <div class="input-group">
+            <form ng-submit="submitMessage(chat._id)" class="input-group">
+              <input id="btn-input" type="text" placeholder="Type your message here..." name="sendMessage" ng-model="textmessage" class="form-control input-md"/><span class="input-group-btn">
+                <button id="btn-chat" type="submit" ng-click="apply()" class="btn btn-send btn-md">Send</button></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end chat panel-->
+  </div>

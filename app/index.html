@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="snsChat">
+
+<head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body ng-controller="layoutController">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#sidebar-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img src="favicons.png" class="pull-left" /><span>SNS</span>admin</a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user">&nbsp; <span class="caret"></span></span></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="/logout"><span class="glyphicon glyphicon-log-out">Logout</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="sidebar-collapse" class="sidebar">
+        <ul class="nav menu">
+            <li><a href="#/">home<span class="glyphicon glyphicon-home pull-right"></span></a>
+            </li>
+            <li><a href="#/chat">chat<span class="glyphicon glyphicon-comment pull-right"></span></a>
+            </li>
+            <li><a href="#/employees">employees<span class="glyphicon glyphicon-user pull-right"></span></a>
+            </li>
+            <li><a href="#/customers">customers<span class="glyphicon glyphicon-user pull-right"></span></a>
+            </li>
+            <li><a href="#/categories">categories<span class="glyphicon glyphicon-user pull-right"></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main" ui-view></div>
+
+    <!-- CDN jQuery, Angular, Sockets-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <!-- Angular main app-->
+    <script src="/js/app.js"></script>
+    <!-- Angular services-->
+    <script src="/js/services/apiurlService.js"></script>
+    <!-- Angular factories-->
+    <script src="/js/factories/motdFactory.js"></script>
+    <script src="/js/factories/chatFactory.js"></script>
+    <script src="/js/factories/employeeFactory.js"></script>
+    <script src="/js/factories/socketFactory.js"></script>
+    <!-- Angular directives-->
+    <script src="/js/directives/draggableDirective.js"></script>
+    <script src="/js/directives/droppableDirective.js"></script>
+    <script src="/js/directives/scrollBottomDirective.js"></script>
+    <!-- Angular controllers-->
+    <script src="/js/controllers/motdController.js"></script>
+    <script src="/js/controllers/layoutController.js"></script>
+    <script src="/js/controllers/chatController.js"></script>
+    <script src="/js/controllers/employeeController.js"></script>
+    <script src="/js/controllers/customerController.js"></script>
+    <script src="/js/controllers/categoryController.js"></script>
+    <!-- Bootstrap-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jQuery dom manipulation-->
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

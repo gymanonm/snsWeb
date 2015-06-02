@@ -1,0 +1,37 @@
+<h1>Employees</h1>
+<div ng-controller="employeeController" class="row">
+  <!-- start Employee-list panel-->
+  <div class="col-md-4">
+    <div class="panel panel-default chatlist">
+      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Employees</div>
+      <div class="panel-body chat">
+        <ul>
+          <li ng-repeat="employee in employees" ng-click="setCrudEmployee(employee._id)" class="chat-list-item clearfix deletehide"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
+            <div class="header"><strong class="primary-font">{{employee.username}}</strong><br/></div>
+            <button ng-click="deleteEmployee(employee._id)" class="btn btn-danger pull-right">Delete</button>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <button ng-click="newEmployee()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </div>
+    </div>
+  </div>
+  <!-- end Employee-list panel-->
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>{{isNew()}} Employee</div>
+      <div class="panel-body employeecrud">
+        <form ng-submit="submitEmployee()" class="input-group">
+          <div class="input-group">
+            <label>Username</label>
+            <input name="employee.username" type="text" ng-model="employee.username" required="required" class="form-control"/><br/>
+            <label>Password</label>
+            <input name="employee.password" type="password" ng-model="employee.password" required="required" class="form-control"/>
+          </div>
+          <button type="submit" ng-click="apply()" class="btn btn-send">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

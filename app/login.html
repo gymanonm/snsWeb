@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="snsChat">
+  <head>
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+          <div class="panel-heading">Log in</div>
+          <div class="panel-body">
+            <form action="/login" method="POST">
+              <fieldset>
+                <div class="form-group">
+                  <input placeholder="Username" name="username" type="text" autofocus="" required="" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input placeholder="Password" name="password" type="password" value="" required="" class="form-control">
+                </div>
+                <input type="submit" value="Login" class="btn btn-primary">
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- CDN jQuery, Angular, Sockets-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <!-- Angular main app-->
+    <script src="/js/app.js"></script>
+    <!-- Angular services-->
+    <script src="/js/services/apiurlService.js"></script>
+    <!-- Angular factories-->
+    <script src="/js/factories/motdFactory.js"></script>
+    <script src="/js/factories/chatFactory.js"></script>
+    <script src="/js/factories/employeeFactory.js"></script>
+    <script src="/js/factories/socketFactory.js"></script>
+    <!-- Angular directives-->
+    <script src="/js/directives/draggableDirective.js"></script>
+    <script src="/js/directives/droppableDirective.js"></script>
+    <script src="/js/directives/scrollBottomDirective.js"></script>
+    <!-- Angular controllers-->
+    <script src="/js/controllers/motdController.js"></script>
+    <script src="/js/controllers/layoutController.js"></script>
+    <script src="/js/controllers/chatController.js"></script>
+    <script src="/js/controllers/employeeController.js"></script>
+    <script src="/js/controllers/customerController.js"></script>
+    <script src="/js/controllers/categoryController.js"></script>
+    <!-- Bootstrap-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jQuery dom manipulation-->
+    <script src="/js/main.js"></script>
+  </body>
+</html>

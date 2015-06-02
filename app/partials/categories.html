@@ -1,0 +1,34 @@
+<h1>Categories</h1>
+<div ng-controller="categoryController" class="row">
+  <!-- start customer-list panel-->
+  <div class="col-md-4">
+    <div class="panel panel-default chatlist">
+      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Categories</div>
+      <div class="panel-body chat">
+        <ul>
+          <li ng-repeat="category in categories" ng-click="setCrudCategory(category._id)" class="chat-list-item clearfix deletehide">
+            <div class="header"><strong class="primary-font">{{category.name}}</strong></div>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <button ng-click="newCustomer()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </div>
+    </div>
+  </div>
+  <!-- end customer-list panel-->
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>{{isNew()}} Category</div>
+      <div class="panel-body customercrud">
+        <form ng-submit="submitCategory()" class="input-group">
+          <div class="input-group">
+            <label>Name</label>
+            <input name="category.name" type="text" ng-model="category.name" required="required" class="form-control"/>
+          </div>
+          <button type="submit" ng-click="apply()" class="btn btn-send">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
