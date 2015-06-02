@@ -1,0 +1,47 @@
+extends ../layout/layout
+
+block content
+    h1
+      | customers
+    div.row(ng-controller="customerController")
+      // start customer-list panel
+      div.col-md-4
+        div.panel.panel-default.chatlist
+          div.panel-heading
+            span.glyphicon.glyphicon-list
+            | customers
+          div.panel-body.chat
+            ul
+              li.chat-list-item.clearfix.deletehide(ng-repeat="customer in customers" ng-click="setCrudCustomer(customer._id)")
+                span.chat-img.pull-left
+                  img(src="http://placehold.it/50/30a5ff/fff", alt="User Avatar", class="img-circle")
+                div.header
+                  strong.primary-font
+                    | {{customer.name}}
+                  br
+                button.btn.btn-danger.pull-right(ng-click="deleteCustomer(customer._id)")
+                  | Delete
+          div.panel-footer
+            button.btn.btn-send(ng-click="newCustomer()")
+              span.glyphicon.glyphicon-plus
+              |  New
+      // end customer-list panel
+
+
+      div.col-md-8
+        div.panel.panel-default
+          div.panel-heading
+            span.glyphicon.glyphicon-user
+            | {{isNew()}} customer
+          div.panel-body.customercrud
+            form.input-group(ng-submit="submitCustomer()")
+              div.input-group
+                label
+                  | Name
+                input.form-control(name="customer.name", type="text", ng-model="customer.name" required)
+                br
+                label
+                  | RegID
+                input.form-control(name="customer.registrationId", type="text", ng-model="customer.registrationId" required)
+              button.btn.btn-send(type="submit" ng-click="apply()")
+                | Send

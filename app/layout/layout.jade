@@ -1,0 +1,16 @@
+doctype html
+html(ng-app="snsChat")
+  head
+    title= title
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body(ng-controller="layoutController")
+    include navbar
+    include sidebar
+    div.main
+      block content
+    include notifications
+
+include scripts
+
+

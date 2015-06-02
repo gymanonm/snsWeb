@@ -1,0 +1,38 @@
+extends ../layout/layout
+
+block content
+    h1
+      | Categories
+    div.row(ng-controller="categoryController")
+      // start customer-list panel
+      div.col-md-4
+        div.panel.panel-default.chatlist
+          div.panel-heading
+            span.glyphicon.glyphicon-list
+            | Categories
+          div.panel-body.chat
+            ul
+              li.chat-list-item.clearfix.deletehide(ng-repeat="category in categories" ng-click="setCrudCategory(category._id)")
+                div.header
+                  strong.primary-font
+                    | {{category.name}}
+          div.panel-footer
+            button.btn.btn-send(ng-click="newCustomer()")
+              span.glyphicon.glyphicon-plus
+              |  New
+      // end customer-list panel
+
+
+      div.col-md-8
+        div.panel.panel-default
+          div.panel-heading
+            span.glyphicon.glyphicon-user
+            | {{isNew()}} Category
+          div.panel-body.customercrud
+            form.input-group(ng-submit="submitCategory()")
+              div.input-group
+                label
+                  | Name
+                input.form-control(name="category.name", type="text", ng-model="category.name" required)
+              button.btn.btn-send(type="submit" ng-click="apply()")
+                | Send

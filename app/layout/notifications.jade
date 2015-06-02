@@ -1,0 +1,8 @@
+div.notifications
+  div.notification(ng-repeat="alert in alerts" href="{{alert._id}}" id="{{alert._id}}" employee="{{alert.EmployeeID}}")
+    div.notificationtitle
+      | {{alert.ChatId}}
+    div.notificationclose
+      | [X] CLOSE
+    div.notificationbody
+      | {{alert.message}}

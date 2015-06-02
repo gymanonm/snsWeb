@@ -1,0 +1,18 @@
+extends ../layout/layout
+
+block content
+
+  div(ng-controller="motdController as motd")
+    h1= "SNS chat web client"
+    p
+    | Welcome to SNS chat web client,
+    br
+    | here we are going to build the most amazing chat application ever.
+    br
+    //| Beware of eye orgasms!
+
+    h2
+      | MOTD:
+    p
+      | {{data.message}}
+
