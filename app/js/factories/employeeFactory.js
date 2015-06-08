@@ -7,13 +7,24 @@ angular.module('factories.employeeFactory', [])
             $http.get(localhost + "employees/").success(callback);
         },
         get: function (callback, id) {
-            $http.get(apiurl.get() + "employees/"+id).success(callback);
+            $http.get(localhost + "employees/"+id).success(callback);
         },
         post: function (callback, data) {
-            $http.post(apiurl.get() + "employees/", data).success(callback);
+            $http.post(localhost + "employees/", data).success(callback);
         },
         put: function (callback, id, data) {
-            $http.put(apiurl.get() + "employees/"+id, data).success(callback);
+            $http.put(localhost + "employees/"+id, data).success(callback);
+        },
+        delete : function(id){
+            console.log(id)
+            $http.delete(localhost +"employees/"+ id)
+                .success(function(data){
+                    console.log("Error " + data.data);
+                })
+                .error(function(data){
+                    console.log("Error " + data.data);
+                })
+
         }
 
       };

@@ -19,16 +19,15 @@
                                'controllers.authorizationController'])
 
 
-        .run(function($rootScope, jwtHelper, $location){
-          $rootScope.$on('$locationChangeStart', function(){
+        .run(function($rootScope, jwtHelper, $window){
+            $rootScope.$on('$locationChangeStart', function(){
              var user = localStorage.getItem("user");
-              console.log(user);
-              if(!user){
-                  console.log($location.absUrl())
-                  $location.path('/login.html');
+              if(!user || user == null && $rootScope.loggingOut === true){
+                  $window.location.href = "/login";
               }
           });
         })
+
     .config(function($locationProvider, $stateProvider, $httpProvider, $urlRouterProvider, jwtInterceptorProvider) {
 
         $locationProvider.html5Mode(true);
@@ -69,7 +68,7 @@
             controller: 'categoryController'
         });
 
-            jwtInterceptorProvider.tokenGetter = function(jwtHelper) {
+            jwtInterceptorProvider.tokenGetter = ['$window', function($window) {
                 var user = localStorage.getItem("user");
                 if (user) {
                     var idToken = user.token;
@@ -80,11 +79,30 @@
                     }
                     // If token is expired, get a new one
                     if (jwtHelper.isTokenExpired(idToken)) {
-                       // $window.location.href = "/login"; //TODO redirect to login
+                         $window.location.href = "/login"; //TODO redirect to login
+                        return;
                     }
+                    return idToken;
                 }
+                //return localStorage.getItem('id_token');
+            }];
 
-            };
+            //jwtInterceptorProvider.tokenGetter = function(jwtHelper) {
+            //    var user = localStorage.getItem("user");
+            //    if (user) {
+            //        var idToken = user.token;
+            //        //var refreshToken = localStorage.user.refreshToken;
+            //        // If no token return null
+            //        if (!idToken) {
+            //            return null;
+            //        }
+            //        // If token is expired, get a new one
+            //        if (jwtHelper.isTokenExpired(idToken)) {
+            //           // $window.location.href = "/login"; //TODO redirect to login
+            //        }
+            //    }
+            //
+            //};
 
             $httpProvider.interceptors.push('jwtInterceptor');
 

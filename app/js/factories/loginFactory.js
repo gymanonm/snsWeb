@@ -20,13 +20,21 @@ angular.module('factories.authorizationFactory', [])
 
                 $http(req)
                     .success(function(data){
+                        console.log("Token: " + data.token);
                         var user = {userId: data._id, username: data.username, token: data.token};
                         localStorage.setItem("user", user);
-                       $window.location.href = '/';
+                        console.log(localStorage.getItem("user").token);
+
+                        $window.location.href = '/';
 
                     })
                     .error(function(err){
-                        $window.location.href = '/login';                    })
+                        $window.location.href = '/login';
+                    })
+            },
+            logout : function(){
+                localStorage.removeItem("user");
+                $window.location.href = '/login';
             }
         }
     });
