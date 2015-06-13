@@ -1,8 +1,11 @@
 angular.module('factories.employeeFactory', [])
 
     .factory('Employees',[ '$http', 'apiurl', function ($http, apiurl) {
-        var localhost = "http://localhost:8080/"
-      return {
+
+        var localhost = "http://localhost:8080/";
+        var host = "http://178.62.252.32:8080";
+
+        return {
         all: function (callback) {
             $http.get(localhost + "employees/").success(callback);
         },

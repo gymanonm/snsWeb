@@ -20,12 +20,13 @@
 
 
         .run(function($rootScope, jwtHelper, $window){
-            $rootScope.$on('$locationChangeStart', function(){
-             var user = localStorage.getItem("user");
-              if(!user || user == null && $rootScope.loggingOut === true){
-                  $window.location.href = "/login";
-              }
-          });
+          //  $rootScope.$on('$locationChangeStart', function(){
+          //   var user = localStorage.getItem("user");
+          //      console.log(user);
+          //    if(!user || user == null && $rootScope.loggingOut === true){
+          //        $window.location.href = "/login";
+          //    }
+          //});
         })
 
     .config(function($locationProvider, $stateProvider, $httpProvider, $urlRouterProvider, jwtInterceptorProvider) {
@@ -68,41 +69,24 @@
             controller: 'categoryController'
         });
 
-            jwtInterceptorProvider.tokenGetter = ['$window', function($window) {
-                var user = localStorage.getItem("user");
-                if (user) {
-                    var idToken = user.token;
-                    //var refreshToken = localStorage.user.refreshToken;
-                    // If no token return null
-                    if (!idToken) {
-                        return null;
-                    }
-                    // If token is expired, get a new one
-                    if (jwtHelper.isTokenExpired(idToken)) {
-                         $window.location.href = "/login"; //TODO redirect to login
-                        return;
-                    }
-                    return idToken;
-                }
-                //return localStorage.getItem('id_token');
-            }];
 
-            //jwtInterceptorProvider.tokenGetter = function(jwtHelper) {
-            //    var user = localStorage.getItem("user");
-            //    if (user) {
-            //        var idToken = user.token;
-            //        //var refreshToken = localStorage.user.refreshToken;
-            //        // If no token return null
-            //        if (!idToken) {
-            //            return null;
-            //        }
-            //        // If token is expired, get a new one
-            //        if (jwtHelper.isTokenExpired(idToken)) {
-            //           // $window.location.href = "/login"; //TODO redirect to login
-            //        }
-            //    }
-            //
-            //};
+            $httpProvider.interceptors.push(['$q', '$window', function($q, $window) {
+                return {
+                    'request': function (config) {
+                        config.headers = config.headers || {};
+                        if (localStorage.getItem("token")) {
+                            config.headers.Authorization = 'Bearer ' + localStorage.getItem("token");
+                        }
+                        return config;
+                    },
+                    'responseError': function(response) {
+                        if(response.status === 401 || response.status === 403) {
+                            $window.location.href = '/login';
+                        }
+                        return $q.reject(response);
+                    }
+                };
+            }]);
 
             $httpProvider.interceptors.push('jwtInterceptor');
 

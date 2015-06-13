@@ -2,7 +2,7 @@ angular.module('controllers.employeeController', [])
 
     .controller('employeeController', function($scope, $http, apiurl, Employees){
         var employeeCrud = "";
-        console.log("User: " + localStorage.getItem("user") + "  Token: " + localStorage.getItem("user").token);
+        console.log("User: " + localStorage.getItem("user").username + "  Token: " + localStorage.getItem("user").token);
         Employees.all(function(response) { $scope.employees = response.data });
         Employees.get(function(response) { $scope.employee = response.data },employeeCrud);
 

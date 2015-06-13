@@ -13,7 +13,7 @@ angular.module('controllers.layoutController', [])
             $rootScope.loggingOut = true;
             authorizationFactory.logout();
             $rootScope.loggingOut = false;
-
         };
+
     //$http.get(apiurl.get() + "employees/" + $scope.userid + '/notifications').success(function(response) { console.log(response.data); })
   })
