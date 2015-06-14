@@ -2,7 +2,7 @@ angular.module('controllers.employeeController', [])
 
     .controller('employeeController', function($scope, $http, apiurl, Employees){
         var employeeCrud = "";
-
+        console.log("User: " + localStorage.getItem("user").username + "  Token: " + localStorage.getItem("user").token);
         Employees.all(function(response) { $scope.employees = response.data });
         Employees.get(function(response) { $scope.employee = response.data },employeeCrud);
 
@@ -21,10 +21,9 @@ angular.module('controllers.employeeController', [])
           $scope.loadEmployee(id);
         };
 
-        $scope.deleteEmployee = function(id) {
-            $http.delete(apiurl.get() + "employees/" + id).success(function(data, status, headers, config) {
-            $scope.loadEmployee(employeeCrud);
-          });
+        $scope.deleteEmployee = function(employee) {
+            $scope.employees.splice($scope.employees.indexOf(employee), 1);
+            Employees.delete(employee._id);
         };
 
         $scope.submitEmployee = function() {

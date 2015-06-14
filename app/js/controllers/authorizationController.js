@@ -3,7 +3,8 @@
  */
 angular.module('controllers.authorizationController', [])
 
-.controller('authorizationController', function($scope, authorizationFactory){
+.controller('authorizationController', function($rootScope, $scope, authorizationFactory){
+        $rootScope.loggingOut = false;
 
         console.log("ok");
         $scope.login = function(user){

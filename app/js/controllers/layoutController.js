@@ -1,6 +1,6 @@
 angular.module('controllers.layoutController', [])
 
-  .controller('layoutController', function($scope, $http, apiurl, $window){
+  .controller('layoutController', function($rootScope, $scope, $http, apiurl, $window, authorizationFactory){
     $http.get(apiurl.get() + "profile/").success(function(response) {
       var userID = response.data.userid;
       $http.get(apiurl.get() + "employees/" + userID + '/notifications').success(function(response) { console.log(response.data); })
@@ -10,8 +10,10 @@ angular.module('controllers.layoutController', [])
     $scope.alerts = alerts;
 
         $scope.logout = function(){
-            localStorage.setItem("user", undefined);
-            $window.location.href = "/login";
-        }
+            $rootScope.loggingOut = true;
+            authorizationFactory.logout();
+            $rootScope.loggingOut = false;
+        };
+
     //$http.get(apiurl.get() + "employees/" + $scope.userid + '/notifications').success(function(response) { console.log(response.data); })
   })
