@@ -14,6 +14,7 @@
                                'controllers.chatController',
                                'controllers.customerController',
                                'controllers.employeeController',
+                               'controllers.faqController',
                                'controllers.layoutController',
                                'controllers.motdController',
                                'controllers.authorizationController'])
@@ -67,6 +68,11 @@
             url: '/categories',
             templateUrl: 'partials/categories.html',
             controller: 'categoryController'
+        })
+        .state('faq', {
+            url: '/faq',
+            templateUrl: 'partials/faq.html',
+            controller: 'faqController'
         });
 
 

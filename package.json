@@ -1,0 +1,19 @@
+{
+  "name": "snsWeb",
+  "version": "0.0.0",
+  "description": "Web for sns",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "http-server": "~0.8.0",
+    "union": "~0.4.4",
+    "ecstatic": "~0.8.0",
+    "http-proxy": "~1.11.1",
+    "corser": "~2.0.0"
+  },
+  "devDependencies": {},
+  "author": "Rick de Jong",
+  "license": "BSD-2-Clause"
+}
