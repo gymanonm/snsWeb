@@ -10,11 +10,11 @@
                                'directives.draggableDirective',
                                'directives.droppableDirective',
                                'directives.scrollBottomDirectives',
+                               'controllers.faqController',
                                'controllers.categoryController',
                                'controllers.chatController',
                                'controllers.customerController',
                                'controllers.employeeController',
-                               'controllers.faqController',
                                'controllers.layoutController',
                                'controllers.motdController',
                                'controllers.authorizationController'])
@@ -95,6 +95,8 @@
             }]);
 
             $httpProvider.interceptors.push('jwtInterceptor');
+
+
 
      //       var Base64 ={
      //       _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

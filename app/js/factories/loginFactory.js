@@ -14,7 +14,7 @@ angular.module('factories.authorizationFactory', [])
 
                 var req = {
                     method: 'POST',
-                    url: localUrl+'/login',
+                    url: host+'/login',
                     skipAuthorization: true,
                     data: {username: user.username, password: user.password}
                 };
