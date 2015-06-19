@@ -22,7 +22,7 @@ angular.module('controllers.layoutController', [])
 
           $http.get(chatUrl).success(function(response) { 
             console.log(response);
-            obj.senderName = response.data.customer.name;
+            obj.senderName = "customer";//response.data.customer.name;
             $scope.alerts = alerts;
           })
         }
