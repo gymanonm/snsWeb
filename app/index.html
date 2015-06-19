@@ -16,7 +16,7 @@
                 </button>
                 <a href="/" class="navbar-brand"><img src="favicons.png" class="pull-left" /><span>SNS</span>admin</a>
                 <ul class="user-menu">
-                    <li class="dropdown pull-right"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user">&nbsp; <span class="caret"></span></span></a>
+                    <li class="dropdown pull-right"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user">&nbsp; {{user.username}}<span class="caret"></span></span></a>
                         <ul role="menu" class="dropdown-menu">
                             <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out">Logout</span></a>
                             </li>
@@ -39,7 +39,7 @@
             </li>
             <li><a href="/categories">Categories<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
-            <li><a href="/faq">faq<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/faq">FAQ<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
         </ul>
     </div>
