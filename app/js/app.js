@@ -10,6 +10,7 @@
                                'directives.draggableDirective',
                                'directives.droppableDirective',
                                'directives.scrollBottomDirectives',
+                               'controllers.faqController',
                                'controllers.categoryController',
                                'controllers.chatController',
                                'controllers.customerController',
@@ -40,34 +41,40 @@
         //        controller: 'authorizationController'
         //    }
         //)
-            .state('home', {
-                url: '/',
-                templateUrl: 'partials/home.html',
-                controller: 'motdController',
-                    data: {
-                        requiresLogin: true
-                    }
-            })
-            .state('chat', {
-                url: '/chat',
-                templateUrl: 'partials/chat.html',
-                controller: 'chatController'
-            })
-            .state('customers', {
-                url: '/customers',
-                templateUrl: 'partials/customers.html',
-                controller: 'customerController'
-            })
-            .state('employees', {
-                url: '/employees',
-                templateUrl: 'partials/employees.html',
-                controller: 'employeeController'
-            })
-            .state('categories', {
-                url: '/categories',
-                templateUrl: 'partials/categories.html',
-                controller: 'categoryController'
-            });
+
+        .state('home', {
+            url: '/',
+            templateUrl: 'partials/home.html',
+            controller: 'motdController',
+                data: {
+                    requiresLogin: true
+                }
+        })
+        .state('chat', {
+            url: '/chat',
+            templateUrl: 'partials/chat.html',
+            controller: 'chatController'
+        })
+        .state('customers', {
+            url: '/customers',
+            templateUrl: 'partials/customers.html',
+            controller: 'customerController'
+        })
+        .state('employees', {
+            url: '/employees',
+            templateUrl: 'partials/employees.html',
+            controller: 'employeeController'
+        })
+        .state('categories', {
+            url: '/categories',
+            templateUrl: 'partials/categories.html',
+            controller: 'categoryController'
+        })
+        .state('faq', {
+            url: '/faq',
+            templateUrl: 'partials/faq.html',
+            controller: 'faqController'
+        });
 
         $httpProvider.interceptors.push(['$q', '$window', function($q, $window) {
             return {
@@ -88,6 +95,8 @@
         }]);
 
         $httpProvider.interceptors.push('jwtInterceptor');
+
+
 
      //       var Base64 ={
      //       _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
