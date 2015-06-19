@@ -40,55 +40,54 @@
         //        controller: 'authorizationController'
         //    }
         //)
-        .state('home', {
-            url: '/',
-            templateUrl: 'partials/home.html',
-            controller: 'motdController',
-                data: {
-                    requiresLogin: true
-                }
-        })
-        .state('chat', {
-            url: '/chat',
-            templateUrl: 'partials/chat.html',
-            controller: 'chatController'
-        })
-        .state('customers', {
-            url: '/customers',
-            templateUrl: 'partials/customers.html',
-            controller: 'customerController'
-        })
-        .state('employees', {
-            url: '/employees',
-            templateUrl: 'partials/employees.html',
-            controller: 'employeeController'
-        })
-        .state('categories', {
-            url: '/categories',
-            templateUrl: 'partials/categories.html',
-            controller: 'categoryController'
-        });
-
-
-            $httpProvider.interceptors.push(['$q', '$window', function($q, $window) {
-                return {
-                    'request': function (config) {
-                        config.headers = config.headers || {};
-                        if (localStorage.getItem("token")) {
-                            config.headers.Authorization = 'Bearer ' + localStorage.getItem("token");
-                        }
-                        return config;
-                    },
-                    'responseError': function(response) {
-                        if(response.status === 401 || response.status === 403) {
-                            $window.location.href = '/login';
-                        }
-                        return $q.reject(response);
+            .state('home', {
+                url: '/',
+                templateUrl: 'partials/home.html',
+                controller: 'motdController',
+                    data: {
+                        requiresLogin: true
                     }
-                };
-            }]);
+            })
+            .state('chat', {
+                url: '/chat',
+                templateUrl: 'partials/chat.html',
+                controller: 'chatController'
+            })
+            .state('customers', {
+                url: '/customers',
+                templateUrl: 'partials/customers.html',
+                controller: 'customerController'
+            })
+            .state('employees', {
+                url: '/employees',
+                templateUrl: 'partials/employees.html',
+                controller: 'employeeController'
+            })
+            .state('categories', {
+                url: '/categories',
+                templateUrl: 'partials/categories.html',
+                controller: 'categoryController'
+            });
 
-            $httpProvider.interceptors.push('jwtInterceptor');
+        $httpProvider.interceptors.push(['$q', '$window', function($q, $window) {
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if (localStorage.getItem("token")) {
+                        config.headers.Authorization = 'Bearer ' + localStorage.getItem("token");
+                    }
+                    return config;
+                },
+                'responseError': function(response) {
+                    if(response.status === 401 || response.status === 403) {
+                        //$window.location.href = '/login';
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
+
+        $httpProvider.interceptors.push('jwtInterceptor');
 
      //       var Base64 ={
      //       _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
@@ -135,9 +134,10 @@
      //   };
      //
      //       var auth = 'Basic ' + Base64.encode('sns:JH(5t7ywq4ufh974H$(U)t84w');
-     //
-     //       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
-     //       $httpProvider.defaults.headers.common['Authorization'] = auth;
+//
+//       $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+//       $httpProvider.defaults.headers.common['Authorization'] = auth;
+
      //       //$httpProvider.defaults.headers.common['Cookie'] = "connect.sid=" + getCookie("connect.sid");
      //       $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      //

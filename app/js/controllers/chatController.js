@@ -6,21 +6,21 @@ angular.module('controllers.chatController', [])
 
         socket.on('message', function (data) {
           console.log(data);
-            console.log(chatid);
-          $scope.loadData(chatid);
+          console.log($scope.chatid);
+          $scope.loadData($scope.chatid);
         });
 
-        this.initialize = function( employeeID ) {
-            console.log("init id" + employeeID);
-          this.employeeid = employeeID;
-          $scope.employeeID = employeeID;
-          $scope.loademployee($scope.employeeID)
+        this.initialize = function() {
+          var user = JSON.parse(localStorage.getItem("user"));
+          employeeid = user.userId;
+          $scope.employeeID = employeeid;
+          $scope.loademployee(employeeid);
         }
 
         $scope.click = function(id) {
             console.log("load chat: " + id);
-            chatid = id;
-            $scope.loadData(chatid);
+            $scope.chatid = id;
+            $scope.loadData(id);
         }
 
         $scope.changeemployee = function(id) {
@@ -64,12 +64,11 @@ angular.module('controllers.chatController', [])
         };
 
         $scope.loademployee = function (id) {
-            employeeid = id;
-          $http.get(apiurl.get() + "employees/"+employeeid).success(function(response) { $scope.employee = response.data })
-          Chats.get(function(response) { $scope.chats = response.data },employeeid)
-          Chats.all(function(response) { $scope.allchats = response.data },employeeid)
-          Chats.messages(function(response) { $scope.chat = response.data },employeeid)
-            console.log($scope.employees)
+          console.log("loademployee " + id);
+          $http.get(apiurl.get() + "employees/"+id).success(function(response) { $scope.employee = response.data })
+          Chats.get(function(response) { $scope.chats = response.data },id)
+          Chats.all(function(response) { $scope.allchats = response.data },id)
+          Chats.messages(function(response) { $scope.chat = response.data },id)
         };
 
         $scope.empclass = function(emp) {

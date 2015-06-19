@@ -8,7 +8,7 @@
     <base href="/">
 </head>
 
-<body ng-controller="layoutController">
+<body ng-controller="layoutController as lytctrl" ng-init="lytctrl.initialize()">
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -29,20 +29,34 @@
 
     <div id="sidebar-collapse" class="sidebar">
         <ul class="nav menu">
-            <li><a href="/">home<span class="glyphicon glyphicon-home pull-right"></span></a>
+            <li><a href="/">Home<span class="glyphicon glyphicon-home pull-right"></span></a>
             </li>
-            <li><a href="/chat">chat<span class="glyphicon glyphicon-comment pull-right"></span></a>
+            <li><a href="/chat">Chat<span class="glyphicon glyphicon-comment pull-right"></span></a>
             </li>
-            <li><a href="/employees">employees<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/employees">Employees<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
-            <li><a href="/customers">customers<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/customers">Customers<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
-            <li><a href="/categories">categories<span class="glyphicon glyphicon-user pull-right"></span></a>
+            <li><a href="/categories">Categories<span class="glyphicon glyphicon-user pull-right"></span></a>
             </li>
         </ul>
     </div>
 
     <div class="main" ui-view></div>
+
+    <div class="notifications">
+        <div class="notification" ng-repeat="alert in alerts" href="{{alert._id}}" id="{{alert._id}}" employee="{{alert.EmployeeID}}">
+            <div class="notificationtitle" ng-click="goToChatFromAlert(alert)">
+                {{alert.senderName}}
+            </div>
+            <div class="notificationclose" ng-click="closeNotification(alert, alerts)">
+                [X] CLOSE
+            </div>
+            <div class="notificationbody" ng-click="goToChatFromAlert(alert)">
+                {{alert.message}}
+            </div>
+        </div>
+    </div>
 
     <!-- CDN jQuery, Angular, Sockets-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -67,7 +81,7 @@
     <script src="/js/directives/scrollBottomDirective.js"></script>
     <!-- Angular controllers-->
     <script src="/js/controllers/motdController.js"></script>
-    <script src="/js/controllers/layoutController.js"></script>    <
+    <script src="/js/controllers/layoutController.js"></script>
     <script src="./js/controllers/authorizationController.js"></script>
     <script src="/js/controllers/chatController.js"></script>
     <script src="/js/controllers/employeeController.js"></script>

@@ -14,13 +14,15 @@ $(function() {
 
       var url = 'http://178.62.252.32:8080/employees/' + employee + '/notifications/' + id;
 
-      $.ajax({
-          url: url,
-          type: 'DELETE',
-          success: function(result) {
-              $(this).parent().fadeOut("slow");
-          }
-      });
+      console.log("clicked");
+
+      //$.ajax({
+      //    url: url,
+      //    type: 'DELETE',
+      //    success: function(result) {
+      //        $(this).parent().fadeOut("slow");
+      //    }
+      //});
       // call doen om ze ook uit de sessie te verwijderen
     });
 });
