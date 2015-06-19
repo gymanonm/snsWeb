@@ -10,6 +10,7 @@
                                'directives.draggableDirective',
                                'directives.droppableDirective',
                                'directives.scrollBottomDirectives',
+                               'controllers.faqController',
                                'controllers.categoryController',
                                'controllers.chatController',
                                'controllers.customerController',
@@ -67,6 +68,11 @@
             url: '/categories',
             templateUrl: 'partials/categories.html',
             controller: 'categoryController'
+        })
+        .state('faq', {
+            url: '/faq',
+            templateUrl: 'partials/faq.html',
+            controller: 'faqController'
         });
 
 
@@ -89,6 +95,8 @@
             }]);
 
             $httpProvider.interceptors.push('jwtInterceptor');
+
+
 
      //       var Base64 ={
      //       _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

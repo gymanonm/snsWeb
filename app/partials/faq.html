@@ -1,18 +1,18 @@
 <h1>faq</h1>
-<div ng-controller="faqController" class="row">
+<div class="row">
   <!-- start customer-list panel-->
   <div class="col-md-4">
     <div class="panel panel-default chatlist">
-      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>customers</div>
+      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>faqs</div>
       <div class="panel-body chat">
         <ul>
-          <li ng-repeat="category in categories" ng-click="" class="chat-list-item clearfix deletehide">
-            <div class="header"><strong class="primary-font">{{categorie.name}}</strong></div>
+          <li ng-repeat="faq in faqs" ng-click="setCrudFaq(faq._id)" class="chat-list-item clearfix deletehide">
+            <div class="header"><strong class="primary-font">{{faq.question}}</strong><small>{{faq.answer}}</small></div>
           </li>
         </ul>
       </div>
       <div class="panel-footer">
-        <button ng-click="newCustomer()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
+        <button ng-click="newFaq()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
       </div>
     </div>
   </div>
@@ -21,12 +21,12 @@
     <div class="panel panel-default">
       <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>{{isNew()}} faq</div>
       <div class="panel-body customercrud">
-        <form ng-submit="submitCustomer()" class="input-group">
+        <form ng-submit="submitFaq()" class="input-group">
           <div class="input-group">
-            <label>Name</label>
-            <input name="customer.name" type="text" ng-model="customer.name" required="required" class="form-control"/><br/>
-            <label>RegID</label>
-            <input name="customer.registrationId" type="text" ng-model="customer.registrationId" required="required" class="form-control"/>
+            <label>question</label>
+            <input name="faq.question" type="text" ng-model="faq.question" required="required" class="form-control"/><br/>
+            <label>answer</label>
+            <textarea name="faq.answer" type="text" ng-model="faq.answer" required="required" class="form-control"></textarea>
           </div>
           <button type="submit" ng-click="apply()" class="btn btn-send">Send</button>
         </form>
