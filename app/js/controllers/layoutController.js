@@ -2,6 +2,8 @@ angular.module('controllers.layoutController', [])
 
   .controller('layoutController', function($rootScope, $scope, $http, apiurl, $window, authorizationFactory){
 
+    $scope.user = JSON.parse(localStorage.getItem(("user")));
+
     this.initialize = function() {
       $scope.loadAlerts();
       console.log("initialize");
