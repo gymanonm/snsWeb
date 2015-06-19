@@ -39,7 +39,7 @@
 
     .config(function($locationProvider, $stateProvider, $httpProvider, $urlRouterProvider, jwtInterceptorProvider) {
 
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         $stateProvider
         //    .state('login',{
@@ -47,8 +47,7 @@
         //        templateUrl: 'login.html',
         //        controller: 'authorizationController'
         //    }
-        //)
-
+        //
         .state('home', {
             url: '/',
             templateUrl: 'partials/home.html',

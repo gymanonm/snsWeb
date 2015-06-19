@@ -41,7 +41,7 @@ angular.module('controllers.layoutController', [])
     }
 
     $scope.goToChatFromAlert = function(alert){
-      $window.location.href = "#/chat/" + alert.ChatId;
+      $window.location.href = "/chat/" + alert.ChatId;
       $scope.closeNotification(alert.ChatId);
     }
 
