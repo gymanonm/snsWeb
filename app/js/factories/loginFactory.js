@@ -4,17 +4,14 @@
 
 angular.module('factories.authorizationFactory', [])
 
-.factory('authorizationFactory', function($http, $state, $window){
-
-        var localUrl = "http://localhost:8080";
-        var host = "http://178.62.252.32:8080";
+.factory('authorizationFactory', function($http, $state, $window, apiurl){
 
         return {
             login : function(user){
 
                 var req = {
                     method: 'POST',
-                    url: host+'/login',
+                    url: apiurl.get()+'login',
                     skipAuthorization: true,
                     data: {username: user.username, password: user.password}
                 };

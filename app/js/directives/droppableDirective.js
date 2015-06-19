@@ -55,7 +55,7 @@ angular.module('directives.droppableDirective', [])
               scope.$apply(function(scope) {
                 var fn = scope.drop();
                 if ('undefined' !== typeof fn) {
-                  fn(item.id);
+                  fn(item.id, binId);
                 }
               });
 

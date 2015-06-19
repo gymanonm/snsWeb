@@ -5,13 +5,13 @@
     <div class="col-md-4">
       <div class="panel panel-default chatlist">
         <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Chats
-          <button class="pull-right btn btn-md btn-send allchatbtn"><span class="glyphicon glyphicon-plus allchatplusbtn"></span></button>
+          <button class="allchatbtn pull-right btn btn-md btn-send "><span class="glyphicon glyphicon-plus allchatplusbtn"></span></button>
         </div>
-        <div droppable="droppable" drop="handleDrop" class="panel-body chat">
+        <div droppable="droppable" drop="handleDrop" id="{{employeeID}}" class="panel-body chat">
           <ul>
-            <li ng-repeat="chat in chats.chats" data="{{chat._id}}" ng-click="click(chat._id)" class="chat-list-item clearfix deletehide"><span class="chat-img pull-left"><img src="http://placehold.it/50/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
+            <li ng-repeat="chat in chats.chats" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" data="{{chat._id}}" ng-show="chat.employees[{{chat.employees | keylength}}]._id == employeeID" ng-click="click(chat._id)" class="chat-list-item clearfix deletehide draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
               <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong></div>
-              <button ng-click="leaveChat(chat._id)" class="btn btn-danger pull-right">Leave</button><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small>
+              <button ng-click="solveChat(chat._id)" class="btn btn-danger pull-right">Solve</button><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small>
             </li>
           </ul>
         </div>
@@ -30,6 +30,24 @@
         </div>
       </div>
     </div>
+
+  <div class="col-md-4 hide emppanel">
+    <div class="panel panel-default chatlist">
+      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Employees</div>
+      <div class="panel-body chat">
+        <ul>
+          <li droppable="droppable" drop="handleDrop" id="{{employee._id}}" ng-repeat="employee in employees" class="chat-list-item clearfix deletehide"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
+            <div class="header"><strong class="primary-font">{{employee.username}}</strong><br/></div>
+            <button ng-click="deleteEmployee(employee._id)" class="btn btn-danger pull-right">Delete</button>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <button ng-click="newEmployee()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
+      </div>
+    </div>
+  </div>
+
     <!-- chat panel-->
     <div class="col-md-8 chatpanel">
       <div class="panel panel-default chat">
@@ -61,3 +79,24 @@
     </div>
     <!-- end chat panel-->
   </div>
+
+  <script>
+    $( ".allchatbtn" ).click(function() {
+      console.log("click");
+      $(".allchatplusbtn").toggleClass("glyphicon-plus");
+      $(".allchatplusbtn").toggleClass("glyphicon-minus");
+      $(".chatpanel").toggleClass("hide");
+      $(".emppanel").toggleClass("hide");
+      //$(".chatpanel").toggleClass("col-md-4");
+      $(".allchatpanel").toggleClass("hide");
+    });
+
+    $(".notificationclose").click(function(object){
+      var id = $(this).parent().attr('id');
+      var employee = $(this).parent().attr('employee');
+
+      var url = 'http://178.62.252.32:8080/employees/' + employee + '/notifications/' + id;
+
+      console.log("clicked");
+    });
+</script>

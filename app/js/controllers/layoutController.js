@@ -10,7 +10,7 @@ angular.module('controllers.layoutController', [])
     $scope.loadAlerts = function () {
       var user = JSON.parse(localStorage.getItem(("user")));
       var notificationUrl = apiurl.get() + "employees/" + user.userId + '/notifications';  
-
+      $scope.user = user;
       $http.get(notificationUrl).success(function(response) { 
         var alerts = response.data; 
 
@@ -39,7 +39,7 @@ angular.module('controllers.layoutController', [])
     }
 
     $scope.goToChatFromAlert = function(alert){
-      $window.location.href = "/chat/" + alert.ChatId;
+      $window.location.href = "#/chat/" + alert.ChatId;
       $scope.closeNotification(alert.ChatId);
     }
 

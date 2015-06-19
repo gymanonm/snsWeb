@@ -2,21 +2,25 @@ angular.module('factories.employeeFactory', [])
 
     .factory('Employees',[ '$http', 'apiurl', function ($http, apiurl) {
 
-        var localhost = "http://localhost:8080/";
-        var host = "http://178.62.252.32:8080";
+
+        var curentUser = {
+            id: "",
+            username: "",
+            token: ""
+        };
 
         return {
         all: function (callback) {
-            $http.get(localhost + "employees/").success(callback);
+            $http.get(apiurl.get() + "employees/").success(callback);
         },
         get: function (callback, id) {
-            $http.get(localhost + "employees/"+id).success(callback);
+            $http.get(apiurl.get() + "employees/"+id).success(callback);
         },
         post: function (callback, data) {
-            $http.post(localhost + "employees/", data).success(callback);
+            $http.post(apiurl.get() + "employees/", data).success(callback);
         },
         put: function (callback, id, data) {
-            $http.put(localhost + "employees/"+id, data).success(callback);
+            $http.put(apiurl.get() + "employees/"+id, data).success(callback);
         },
         delete : function(id){
             console.log(id)
@@ -27,7 +31,6 @@ angular.module('factories.employeeFactory', [])
                 .error(function(data){
                     console.log("Error " + data.data);
                 })
-
         }
 
       };

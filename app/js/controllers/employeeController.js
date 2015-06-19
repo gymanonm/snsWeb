@@ -1,17 +1,17 @@
 angular.module('controllers.employeeController', [])
 
-    .controller('employeeController', function($scope, $http, apiurl, Employees){
+    .controller('employeeController', function($scope, $http, apiurl, Employees, $http){
         var employeeCrud = "";
-        var user = JSON.parse(localStorage.getItem("user"));
 
-        console.log("User: " + user.username + "  Token: " + user.token);
         Employees.all(function(response) { $scope.employees = response.data });
-        Employees.get(function(response) { $scope.employee = response.data }, employeeCrud);
+        Employees.get(function(response) { $scope.employee = response.data },employeeCrud);
+        $http.get(apiurl.get() + "categories/").success(function(response) { $scope.categories = response.data });
 
         $scope.loadEmployee = function(id) {
           employeeCrud = id;
           Employees.all(function(response) { $scope.employees = response.data });
           Employees.get(function(response) { $scope.employee = response.data },employeeCrud);
+            $http.get(apiurl.get() + "categories/").success(function(response) { $scope.categories = response.data });
         };
 
         $scope.newEmployee = function() {
@@ -23,13 +23,15 @@ angular.module('controllers.employeeController', [])
           $scope.loadEmployee(id);
         };
 
-        $scope.deleteEmployee = function(employee) {
-            $scope.employees.splice($scope.employees.indexOf(employee), 1);
-            Employees.delete(employee._id);
+        $scope.deleteEmployee = function(id) {
+            $http.delete(apiurl.get() + "employees/" + id).success(function(data, status, headers, config) {
+            $scope.loadEmployee(employeeCrud);
+          });
         };
 
         $scope.submitEmployee = function() {
-          var data = {username : $scope.employee.username, password: $scope.employee.password}
+          var data = {username : $scope.employee.username, password : $scope.employee.password, category_id : $scope.employee.category}
+          console.log(data);
           var employeeid = $scope.employee._id
           if(typeof employeeid === "undefined")
             //console.log("new op " +employeeid+ " met naam "+$scope.employee.name);
@@ -52,3 +54,4 @@ angular.module('controllers.employeeController', [])
             }
         }
       });
+

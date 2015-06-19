@@ -28,11 +28,18 @@
           //        $window.location.href = "/login";
           //    }
           //});
-        })
+        }).filter('keylength', function(){
+  return function(input){
+    if(!angular.isObject(input)){
+      throw Error("Usage of non-objects with keylength filter!!")
+    }
+    return Object.keys(input).length-1;
+  }
+})
 
     .config(function($locationProvider, $stateProvider, $httpProvider, $urlRouterProvider, jwtInterceptorProvider) {
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
 
         $stateProvider
         //    .state('login',{
