@@ -3,6 +3,7 @@ angular.module('controllers.chatController', [])
     .controller('chatController', function($scope, $http, apiurl, Chats, socket, Employees){
         var employeeid = "";
         var chatid = "";
+        var categoryid = "";
 
         socket.on('message', function (data) {
           console.log(data);
@@ -28,6 +29,9 @@ angular.module('controllers.chatController', [])
           console.log("loadData " + id);
           Employees.all(function(response) { $scope.employees = response.data });
           Employees.get(function(response) { $scope.employee = response.data },employeeid);
+          //categoryid = $scope.employee.category[0];
+          //$scope.categoryID = categoryid;
+            console.log("set catid "  );
           Chats.get(function(response) { $scope.chats = response.data },employeeid)
           Chats.all(function(response) { $scope.allchats = response.data },employeeid)
           Chats.messages(function(response) { $scope.chat = response.data },employeeid, id)
