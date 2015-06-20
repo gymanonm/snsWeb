@@ -2,8 +2,11 @@ angular.module('controllers.layoutController', [])
 
   .controller('layoutController', function($rootScope, $scope, $http, apiurl, $window, authorizationFactory){
 
-    $scope.user = JSON.parse(localStorage.getItem(("user")));
-
+    user = JSON.parse(localStorage.getItem(("user")));
+      $scope.user = user;
+        if(!localStorage.getItem(("user"))){
+         $window.location.href = '/login';
+        }
     this.initialize = function() {
       $scope.loadAlerts();
       console.log("initialize");
@@ -12,7 +15,7 @@ angular.module('controllers.layoutController', [])
     $scope.loadAlerts = function () {
       var user = JSON.parse(localStorage.getItem(("user")));
       var notificationUrl = apiurl.get() + "employees/" + user.userId + '/notifications';  
-      $scope.user = user;
+
       $http.get(notificationUrl).success(function(response) { 
         var alerts = response.data; 
 
