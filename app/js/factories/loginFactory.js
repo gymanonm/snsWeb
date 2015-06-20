@@ -23,7 +23,7 @@ angular.module('factories.authorizationFactory', [])
                         localStorage.setItem("token", data.token);
                         console.log("Token: " + localStorage.getItem(("token")));
 
-                        $window.location.href = '/';
+                        $window.location.href = '#/';
                     })
                     .error(function(err){
                         $window.location.href = '/login';
