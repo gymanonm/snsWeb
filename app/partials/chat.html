@@ -1,7 +1,21 @@
 <h1>SNS chat web client</h1>
 <p>Hieronder zie je links alle chats waaraan je bent toegewezen. Zodra je op het "PLUS"-icoontje klikt, klappen alle beschikbare chats uit. In het rechtervenster zie je de huidige chat.</p>
   <div ng-controller="chatController as chtctrl" ng-init="chtctrl.initialize()" class="row">
-    <!-- start chat-list panel-->
+
+    <div class="col-md-4 hide allchatpanel">
+      <div class="panel panel-default chatlist">
+        <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>All Chats</div>
+        <div class="panel-body chat">
+          <ul>
+            <li ng-repeat="chat in allchats | filter: {'category': {'_id': categoryID }}" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" class="chat-list-item clearfix draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
+              <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong><br/><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+       <!-- start chat-list panel-->
     <div class="col-md-4">
       <div class="panel panel-default chatlist">
         <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Chats
@@ -9,7 +23,7 @@
         </div>
         <div droppable="droppable" drop="handleDrop" id="{{employeeID}}" class="panel-body chat">
           <ul>
-            <li ng-repeat="chat in chats.chats" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" data="{{chat._id}}" ng-show="chat.employees[{{chat.employees | keylength}}]._id == employeeID" ng-click="click(chat._id)" class="chat-list-item clearfix deletehide draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
+            <li ng-repeat="chat in chats.chats | filter: {'solved': 'false'}" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" data="{{chat._id}}" ng-show="chat.employees[{{chat.employees | keylength}}]._id == employeeID" ng-click="click(chat._id)" class="chat-list-item clearfix deletehide draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
               <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong></div>
               <button ng-click="solveChat(chat._id)" class="btn btn-danger pull-right">Solve</button><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small>
             </li>
@@ -18,32 +32,17 @@
       </div>
     </div>
     <!-- end chat-list panel-->
-    <div class="col-md-4 hide allchatpanel">
-      <div class="panel panel-default chatlist">
-        <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>All Chats</div>
-        <div class="panel-body chat">
-          <ul>
-            <li ng-repeat="chat in allchats" id="{{chat._id}}" item="{{chat._id}}" draggable="draggable" class="chat-list-item clearfix draggable"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
-              <div class="header"><strong class="primary-font">{{chat.customer.name}} -<small>{{chat.category.name}}</small></strong><br/><small>{{chat.messages[chat.messages.length-1].text | limitTo: 60}}{{chat.messages[chat.messages.length-1].text.length > 60 ? '...' : ''}}</small></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
 
   <div class="col-md-4 hide emppanel">
     <div class="panel panel-default chatlist">
       <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Employees</div>
       <div class="panel-body chat">
         <ul>
-          <li droppable="droppable" drop="handleDrop" id="{{employee._id}}" ng-repeat="employee in employees" class="chat-list-item clearfix deletehide"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
+          <li droppable="droppable" drop="handleDrop" id="{{employee._id}}" ng-repeat="employee in employees" ng-show="employee.category[0] == categoryID && employee.username != user.username" class=" clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/30a5ff/fff" alt="User Avatar" class="img-circle"/></span>
             <div class="header"><strong class="primary-font">{{employee.username}}</strong><br/></div>
-            <button ng-click="deleteEmployee(employee._id)" class="btn btn-danger pull-right">Delete</button>
           </li>
         </ul>
-      </div>
-      <div class="panel-footer">
-        <button ng-click="newEmployee()" class="btn btn-send"><span class="glyphicon glyphicon-plus"></span> New</button>
       </div>
     </div>
   </div>

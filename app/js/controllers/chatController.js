@@ -27,11 +27,12 @@ angular.module('controllers.chatController', [])
 
         $scope.loadData = function (id) {
           console.log("loadData " + id);
+            chatid = id;
           Employees.all(function(response) { $scope.employees = response.data });
-          Employees.get(function(response) { $scope.employee = response.data },employeeid);
-          //categoryid = $scope.employee.category[0];
-          //$scope.categoryID = categoryid;
-            console.log("set catid "  );
+          Employees.get(function(response) { $scope.employee = response.data;
+                        categoryid = $scope.employee.category[0];
+                        $scope.categoryID = categoryid },employeeid);
+
           Chats.get(function(response) { $scope.chats = response.data },employeeid)
           Chats.all(function(response) { $scope.allchats = response.data },employeeid)
           Chats.messages(function(response) { $scope.chat = response.data },employeeid, id)
