@@ -29,7 +29,7 @@
             <label>Password</label>
             <input name="employee.password" type="password" ng-model="employee.password" required="required" class="form-control"/><br/>
             <label>category - {{employee.category}}</label>
-            <select ng-options="category._id as category.name for category in categories" ng-model="employee.category" class="form-control"></select>
+            <select ng-options="category._id as category.name for category in categories" ng-model="employee.category" class="form-control" required="required"></select>
           </div>
           <button type="submit" ng-click="apply()" class="btn btn-send">Send</button>
         </form>

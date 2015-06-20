@@ -39,17 +39,22 @@ angular.module('controllers.chatController', [])
         };
 
         $scope.empclass = function(emp) {
-          if(emp==true)
+          if(emp)
             return "right"
           else
             return "left"
         }
 
         $scope.pullempclass = function(emp) {
-            if(emp==true)
+            if(emp)
                 return "pull-right"
             else
                 return "pull-left"
+        }
+
+        $scope.isSystem = function(sys) {
+            if(sys)
+                return "truesys"
         }
 
         $scope.handleDrop = function(item, bin){

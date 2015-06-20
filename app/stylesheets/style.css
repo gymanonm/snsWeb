@@ -1036,3 +1036,20 @@ h1.page-header {
 .draggable:hover {
    cursor: move;
 }
+
+
+.panel-sns > .panel-heading {
+  background-image: -webkit-linear-gradient(top, #562772 0%, #453ac7 100%);
+  background-image:      -o-linear-gradient(top, #562772 0%, #453ac7 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#562772), to(#453ac7));
+  background-image:         linear-gradient(to bottom, #562772 0%, #453ac7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#562772', endColorstr='#453ac7', GradientType=0);
+  background-repeat: repeat-x;
+  color: aliceblue;
+}
+
+.truesys:before {
+    color: #562772;
+    font-weight: 700;
+    content: "System Message";
+}

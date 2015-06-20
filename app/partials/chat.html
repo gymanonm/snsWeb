@@ -17,7 +17,7 @@
 
        <!-- start chat-list panel-->
     <div class="col-md-4">
-      <div class="panel panel-default chatlist">
+      <div class="panel panel-sns chatlist">
         <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Chats
           <button class="allchatbtn pull-right btn btn-md btn-send "><span class="glyphicon glyphicon-plus allchatplusbtn"></span></button>
         </div>
@@ -56,7 +56,7 @@
             <!-- chat message-->
             <li ng-repeat="messages in chat.messages" ng-class="empclass(messages.employee)" class="clearfix"><span ng-class="pullempclass(messages.isEmployee)" class="chat-img"><img src="http://placehold.it/80/1D9DE8/fff" alt="User Avatar" class="img-circle"/></span>
               <div class="chat-body clearfix">
-                <div class="header"><strong ng-class="pullempclass(messages.isEmployee)" class="primary-font">{{messages.user.name}} {{messages.employee.name}}</strong>
+                <div class="header"><strong ng-class="pullempclass(messages.isEmployee)" class="primary-font">{{messages.user.name}} {{messages.employee.username}}<span ng-class="isSystem(messages.system)"></span></strong>
                   <!-- | {{messages.userId}}-->
                   <!--  | {{getuser(messages.userId, messages.employee)}}--><small class="text-muted">{{messages.timeStamp | date:'medium'}}</small>
                 </div>
