@@ -1,9 +1,9 @@
-<h1>faq</h1>
+<h1>FAQ Beheer</h1>
 <div class="row">
   <!-- start customer-list panel-->
   <div class="col-md-4">
     <div class="panel panel-default chatlist">
-      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>faqs</div>
+      <div class="panel-heading"><span class="glyphicon glyphicon-list"></span>Alle Questions</div>
       <div class="panel-body chat">
         <ul>
           <li ng-repeat="faq in faqs" ng-click="setCrudFaq(faq._id)" class="chat-list-item clearfix deletehide">
@@ -20,19 +20,19 @@
   <!-- end customer-list panel-->
   <div class="col-md-8">
     <div class="panel panel-default">
-      <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>{{isNew()}} faq</div>
+      <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>{{isNew()}} FAQ</div>
       <div class="panel-body customercrud">
         <form ng-submit="submitFaq()" class="input-group">
           <div class="input-group">
             <label>Category</label>
             <select ng-options="category._id as category.name for category in categories" ng-model="faq.category" class="form-control" required="required"></select>
             <br/>
-            <label>question</label>
+            <label>Question</label>
             <input name="faq.question" type="text" ng-model="faq.question" required="required" class="form-control"/><br/>
-            <label>answer</label>
+            <label>Answer</label>
             <textarea name="faq.answer" type="text" ng-model="faq.answer" required="required" class="form-control"></textarea>
           </div>
-          <button type="submit" ng-click="apply()" class="btn btn-send">Send</button>
+          <button type="submit" ng-click="apply()" class="btn btn-send">Save</button>
         </form>
       </div>
     </div>

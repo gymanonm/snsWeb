@@ -8,7 +8,9 @@ angular.module('controllers.layoutController', [])
          $window.location.href = '/login';
         }
     this.initialize = function() {
-      $scope.loadAlerts();
+      setInterval(function(){
+        $scope.loadAlerts();
+      },4000);
       console.log("initialize");
     }
 

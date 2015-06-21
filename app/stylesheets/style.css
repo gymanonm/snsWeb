@@ -1013,6 +1013,22 @@ h1.page-header {
 	z-index:9999999999999999;
 }
 
+.collapser {
+	text-align:right;
+}
+
+.decollapser {
+	position:fixed;
+	right:0;
+	bottom:0;
+	background-color:#f59c00;
+	color:#fff;
+	padding:10px;
+	text-align:right;
+	width:50px;
+	margin:0px;
+}
+
 .notifications .notification {
 	background-color:#f59c00;
 	margin:10px;
