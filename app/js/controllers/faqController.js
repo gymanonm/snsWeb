@@ -5,11 +5,13 @@ angular.module('controllers.faqController', [])
 
         $http.get(apiurl.get() + "faq/").success(function(response) { $scope.faqs = response.data });
         $http.get(apiurl.get() + "faq/"+faqCrud).success(function(response) { $scope.faq = response.data });
+        $http.get(apiurl.get() + "categories/").success(function(response) { $scope.categories = response.data });
 
         $scope.loadFaq = function(id) {
           faqCrud = id;
           $http.get(apiurl.get() + "faq/").success(function(response) { $scope.faqs = response.data });
           $http.get(apiurl.get() + "faq/"+faqCrud).success(function(response) { $scope.faq = response.data });
+          $http.get(apiurl.get() + "categories/").success(function(response) { $scope.categories = response.data });
         };
 
         $scope.newFaq = function() {
@@ -28,7 +30,7 @@ angular.module('controllers.faqController', [])
         };
 
         $scope.submitFaq = function() {
-          var data = {question : $scope.faq.question, answer : $scope.faq.answer}
+          var data = {question : $scope.faq.question, answer : $scope.faq.answer, category_id : $scope.faq.category}
           var faqid = $scope.faq._id
           if(typeof faqid === "undefined")
             //console.log("new op " +employeeid+ " met naam "+$scope.employee.name);

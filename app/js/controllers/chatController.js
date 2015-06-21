@@ -75,6 +75,7 @@ angular.module('controllers.chatController', [])
         }
 
         $scope.solveChat = function(id) {
-            Chats.solve(function(response) { console.log("solvechat") },employeeid, id)
+            Chats.solve(function(response) { console.log("solvechat") },employeeid, id);
+                        $scope.loadData(chatid);
         }
       });
