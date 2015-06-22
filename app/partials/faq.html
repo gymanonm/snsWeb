@@ -7,7 +7,7 @@
       <div class="panel-body chat">
         <ul>
           <li ng-repeat="faq in faqs" ng-click="setCrudFaq(faq._id)" class="chat-list-item clearfix deletehide">
-            <div class="header"><strong class="primary-font">{{faq.question}}</strong><small>{{faq.answer}}</small></div>
+            <div class="header"><strong class="primary-font">{{faq.category.name}} - {{faq.question}}</strong><small>{{faq.answer}}</small></div>
             <button ng-click="deleteFaq(faq._id)" class="btn btn-danger pull-right">Delete</button>
           </li>
         </ul>
@@ -25,7 +25,7 @@
         <form ng-submit="submitFaq()" class="input-group">
           <div class="input-group">
             <label>Category</label>
-            <select ng-options="category._id as category.name for category in categories" ng-model="faq.category[0]" class="form-control" required="required"></select>
+            <select ng-options="category._id as category.name for category in categories track by category._id" ng-model="faq.category" class="form-control" required="required"></select>
             <br/>
             <label>Question</label>
             <input name="faq.question" type="text" ng-model="faq.question" required="required" class="form-control"/><br/>
