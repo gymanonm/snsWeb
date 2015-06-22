@@ -30,7 +30,7 @@ angular.module('controllers.faqController', [])
         };
 
         $scope.submitFaq = function() {
-          var data = {question : $scope.faq.question, answer : $scope.faq.answer, category_id : $scope.faq.category}
+          var data = {question : $scope.faq.question, answer : $scope.faq.answer, category_id : $scope.faq.category[0]}
           var faqid = $scope.faq._id
           if(typeof faqid === "undefined")
             //console.log("new op " +employeeid+ " met naam "+$scope.employee.name);

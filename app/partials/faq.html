@@ -25,7 +25,7 @@
         <form ng-submit="submitFaq()" class="input-group">
           <div class="input-group">
             <label>Category</label>
-            <select ng-options="category._id as category.name for category in categories" ng-model="faq.category" class="form-control" required="required"></select>
+            <select ng-options="category._id as category.name for category in categories" ng-model="faq.category[0]" class="form-control" required="required"></select>
             <br/>
             <label>Question</label>
             <input name="faq.question" type="text" ng-model="faq.question" required="required" class="form-control"/><br/>

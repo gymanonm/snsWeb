@@ -30,7 +30,7 @@ angular.module('controllers.employeeController', [])
         };
 
         $scope.submitEmployee = function() {
-          var data = {username : $scope.employee.username, password : $scope.employee.password, category_id : $scope.employee.category}
+          var data = {username : $scope.employee.username, password : $scope.employee.password, category_id : $scope.employee.category[0]}
           console.log(data);
           var employeeid = $scope.employee._id
           if(typeof employeeid === "undefined")
